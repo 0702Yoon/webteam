@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Kakao Login Example - Index2</title>
+  </head>
+  <body>
+    <h1>Welcome!</h1>
+    <p id="greeting"></p>
+    <button id="kakao-logout-btn">Kakao Logout</button>
+
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script>
+      // 로그인 성공 후 index2.html 페이지에서 실행할 함수
+      function greetUser(nickname) {
+        document.getElementById("greeting").textContent =
+          nickname + "님 안녕하세요";
+      }
+
+      // 카카오 로그아웃 버튼 클릭 시 처리하는 함수
+      function kakaoLogout() {
+        Kakao.Auth.logout(function () {
+          // 로그아웃 성공 시 index.html로 이동
+          window.location.href = "test2-1.html";
+        });
+      }
+
+      // 페이지 로드 시 호출될 함수
+      function initialize() {
+        Kakao.init("5655e0aa2e406b874cfaff134add8648"); // 카카오 앱의 JavaScript 키를 사용하여 Kakao.init()을 호출
+
+        // 카카오 로그인한 사용자의 닉네임 받아오기
+        Kakao.API.request({
+          url: "/v2/user/me",
+          success: function (response) {
+            greetUser(response.properties.nickname);
+          },
+          fail: function (error) {
+            console.log("Failed to get user info: " + JSON.stringify(error));
+          },
+        });
+
+        // 카카오 로그아웃 버튼에 이벤트 리스너 등록
+        document
+          .getElementById("kakao-logout-btn")
+          .addEventListener("click", kakaoLogout);
+      }
+
+      // 페이지 로드 시 초기화 함수 호출
+      window.onload = initialize;
+    </script>
+  </body>
+</html>

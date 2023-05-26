@@ -1,0 +1,94 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+    <div class="wrap">
+        <div class = "inrto_bg" >
+            <div class="header">
+                <ul class="nav">
+                <li><a href="/subview/back_end">BACK END</a></li>
+                <li><a href="/subview/front_end">FRONT END</a></li>
+                <li><a href="#">COMMUNITY</a></li>
+                </ul>
+                </div>
+            </div>
+            <div class="searchArea">
+                <form>
+                    <input type="search" placeholder="Search">
+                    <button class ="but">검색</button>
+                </form>
+            </div>
+        <!-- <div class="list">
+            <ul>
+                <li><a href="backendPanel.html">BACKEND 게시판</a></li>
+                <li><a href="FrontendPanel.html">FRONTEND 게시판</a></li>
+                <li><a href="allPanel.html">전체게시판</a></li>
+            </ul>
+        </div> -->
+    
+    <!-- 다른 게시판으로 이동 -->
+   
+
+   <!-- 글쓰기 패널 -->
+   <div>
+    <form action="/create_process/" method="post">
+        <form action="/create_process/" method="post">
+        <table class="radioBtn">
+            <tr>
+                <th>모집 분야</th>
+            </tr>
+            <tr>
+                <td>
+                    <input type="radio" name="field" value="back_end" id="backend">
+                    <label for="backend">backend</label>
+                </td>
+                <td>
+                    <input type="radio" name="field" value="front_end" id="frontend">
+                    <label for="frontend">frontend</label>
+                </td>
+                <td>
+                    <input type="radio" name="field" value="all" id="both">
+                    <label for="both">both</label>
+                </td>
+            </tr>
+            
+        <table class="write">
+           
+            <tr>
+                <th>작성자</th>
+                <td><input name="author" placeholder="작성자 이름"></td>   
+                
+            </tr>
+            <tr>
+                <th>제목</th>
+                <td><input type="text" name="title" placeholder="제목을 입력해주세요"></td>
+            </tr>
+            <tr>
+                <th>모집 내용</th>
+                <td><textarea type="text" class="text" placeholder="내용을 입력해주세요" name="content" ></textarea></td>
+            </tr>
+            <tr>
+                <th>태그</th>
+                <td ><input type="text" placeholder="태그를 달아주세요" name="tag"></td>
+            </tr>
+            <tr>
+                <th>카카오톡 링크</th>
+                <td><input></td>
+            </tr>
+        </table>
+        </div>
+        <div class="submit_btn">
+            <tr>
+                <td><button type="submit">upload</button></td>
+            </tr>
+            
+        </div>
+        
+    </form>
+</div>
+</body>
+</html>

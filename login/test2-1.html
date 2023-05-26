@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Kakao Login Example</title>
+  </head>
+  <body>
+    <h1>Kakao Login Example</h1>
+    <div id="kakao-login-btn"></div>
+
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script>
+      // 카카오 로그인 버튼을 생성하고 이벤트를 처리하는 함수
+      function createKakaoLoginButton() {
+        Kakao.init("5655e0aa2e406b874cfaff134add8648"); // 카카오 앱의 JavaScript 키를 사용하여 Kakao.init()을 호출
+
+        Kakao.Auth.createLoginButton({
+          container: "#kakao-login-btn",
+          success: function (authObj) {
+            // 로그인 성공 시 index2.html로 이동
+            window.location.href = "test2-2.html";
+          },
+          fail: function (err) {
+            alert("Kakao login failed: " + JSON.stringify(err));
+          },
+        });
+      }
+
+      // 페이지 로드 시 카카오 로그인 버튼 생성 함수 호출
+      window.onload = createKakaoLoginButton;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,69 @@
+*{
+    font-family: 'Noto Sans KR', sans-serif;
+    list-style: none;
+    text-decoration: none;
+    border-collapse: collapse;
+    margin: 0px;
+    padding: 0px;
+    color: #000;
+ }   
+
+ .inrto_bg {
+    width: 100%;
+    height: 400px;
+    height: 59vh;
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 1), transparent), url("https://mblogthumb-phinf.pstatic.net/MjAyMDA2MjJfMTQ4/MDAxNTkyNzk3MzMzMjAz.p_RyF5CzMoTSrnHF_u06SQnt-YA-BwFmPar4B3-zHDEg._7uy7il_n-G1oWOY55WtqoL3HGSJ2_x6bnSbr5WlckQg.JPEG.life_n_work/SE-49adbb94-6036-4554-aacd-7e7a3ef4e941.jpg?type=w800");
+    background-size: cover;
+    position: relative;
+}
+
+.header{
+    display: flex;
+    width: 1280px;
+    margin: auto;
+    height: 86px;
+    bottom: 0;
+    right: 0;
+}
+.nav{
+    display: flex;
+    justify-content: flex-end;
+    line-height: 86px;
+    width: calc(1280px - 300px);
+    color: #fff;
+    cursor: pointer;
+}
+.nav button{
+    margin-top: 50px;
+    border: none;
+}
+.nav img{
+    width: 30px;
+    height: 30px;
+}
+.nav > li{
+    margin-left: 84px;
+    cursor: pointer;
+}
+
+.nav > li > a {
+    color: #fff;
+        font-size: 20px;
+        float: left;
+        margin: 25px;
+        font-weight: lighter;
+        text-shadow: 4px 4px 10px black;
+        cursor: pointer;
+}
+.content{
+    margin: auto;
+}
+.content table{
+    margin: auto;
+    font-size: 20px;
+    word-break: break-all;
+}
+.content th{
+    vertical-align : top;
+}
+
