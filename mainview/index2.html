@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- css -->
+    <link rel="stylesheet" href="login_style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,200;1,200;1,300&family=PT+Sans:ital,wght@1,700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <section id="home-section">
+      <nav class="top">
+        <li>
+          <button id="kakao-logout-btn">카카오 로그아웃</button>
+          <p id="greeting"></p>
+        </li>
+
+        <ul class="top_nav">
+          <li><a href="#home-section">HOME</a></li>
+          <li><a href="#about-section">ABOUT</a></li>
+          <li><a href="#puzzling-section">PUZZLING</a></li>
+          <li><a href="#frontend-section">FRONT END</a></li>
+          <li><a href="#backend-section">BACK END</a></li>
+          <li><a href="#community-section" id="community">COMMUNITY</a></li>
+        </ul>
+      </nav>
+
+      <div class="title2">
+        <h1 class="title">
+          You're the last <span class="red">Piece</span> of the Puzzle
+        </h1>
+      </div>
+    </section>
+
+    <section id="about-section">
+      <div>
+        <h2>
+          안녕하세요! The Puzzle은 더 나은 세상을 위해 개발자들의 모임을
+          지원하고 있는 커뮤니티입니다.<br /><br />
+          우리는 Backend와 Frontend 분야를 나눠 역할을 분담하여 효율성을
+          높였습니다.<br /><br />
+          우리는 이 과정을 <span class="red">Puzzling</span>이라고 부르며 이를
+          통해 서로의 장점을 최대한 발휘하고 단점을 극복할 수 있습니다.<br /><br />
+          The Puzzle은 자유로운 소통과 협업을 중요시합니다.<br /><br />
+          우리는 개발자들이 자유롭게 의견을 나누고 서로 화합할 수 있는 공간을
+          제공합니다.<br /><br />
+          당신이 바로 마지막 퍼즐 조각입니다. 지금 바로 참여해보세요!
+        </h2>
+      </div>
+    </section>
+
+    <section id="puzzling-section">
+      <div class="container">
+        <button class="button" onclick="flip()">
+          <div
+            class="front"
+            style="
+              background-image: url(https://img.freepik.com/free-photo/jigsaw-puzzle-w…e9725d0a0a61a6c8931adda1deb18bff1af2c1f32d5d35f73);
+            "
+          ></div>
+        </button>
+        <div class="back">
+          <!-- 뒷면 -->
+          <a href="#" id="selectBack">Back</a>
+          <button onclick="flip()">뒤집기</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="frontend-section">
+      <a href="/subview/front_end" class="btn">Front-end</a>
+    </section>
+
+    <section id="backend-section">
+      <a href="/subview/back_end" class="btn">Back-end</a>
+    </section>
+
+    <section id="community-section">
+      <a href="/subview/all" class="btn">Community</a>
+    </section>
+
+    <script src="main2.js"></script>
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+  </body>
+</html>
