@@ -7,21 +7,20 @@
     padding: 0px;
     color: #000;
  }   
-.radioBtn{
+
+select{
+    width:723px;
+    height:40px;
     margin: auto;
-   
-}
-.radioBtn{
-   display: flex;
-   justify-content: center;
-   border: none;
-   margin: 20px;
-   padding: 10px;
-}
-.radioBtn label{
+    /* background-size: 20px;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    border: none;
     margin: 20px;
-    padding: 0.2em 0.4em;
+    padding: 10px; */
 }
+
 .inrto_bg {
     width: 100%;
     height: 400px;
@@ -64,22 +63,26 @@
 
 .write{
     width: 800px; margin: auto;
+    /* text-align: center; */
+}
+.write b{
     text-align: left;
 }
 .write input{
-   width: 600px; padding: 10px; margin: 9px auto 0; white-space:normal;
+   width: 700px; padding: 10px; margin: 9px auto 0; white-space:normal; 
 }
 .write textarea{
-    width: 600px; padding: 10px; margin: 9px auto 0;
+    width: 700px; padding: 10px; margin: 9px auto 0; overflow-x: hidden;
  }
+
 .write .text{
     table-layout: fixed;
     height: 300px; white-space: pre-line; word-break: break-all;
     overflow: scroll;
 }
-.submit_btn{
+/* .submit_btn{
    text-align: center;
-}
+} */
 .logo img{
     width: 100%;
     height: auto;
@@ -103,3 +106,28 @@
     list-style: none;
     float: right; padding: 15px;
 }
+.Submit{
+    text-align: center;
+}
+.Submit button {
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 5px 15px;
+    margin-top: 20px;
+    font-size: 13px;
+    /* font-weight: lighter; */
+    border-radius: 4px;
+    cursor: pointer;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 40px; /* 높이 조절 */
+
+  }
+
+
+
+  .Submit button:hover  {
+    background-color: darkred;
+  }
