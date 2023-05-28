@@ -13,11 +13,11 @@ app.use(bodyParser.json());
 //파일을 json으로 받기 위함인가?
 
 // 정적 파일 서비스 설정
-app.use('/',express.static(__dirname+'/mainview')); // CSS 파일이 있는 디렉토리
-app.use('/writeview',express.static(__dirname+'/writeview')); 
+app.use('/', express.static(__dirname + '/mainview')); // CSS 파일이 있는 디렉토리
+app.use('/writeview', express.static(__dirname + '/writeview'));
 app.use('/subview', express.static(__dirname + '/subview'));
-app.use('/update',express.static(__dirname+'/writeview'));
-
+app.use('/update', express.static(__dirname + '/writeview'));
+app.use('/update', express.static(__dirname + '/subview'));
 // 앞에 인자의 홈페이지에 들어왔을 때 뒤에 파일안에 있는 css를 쓰기 위해서 호출한 것. __dirname은 현재 js 위치에요.
 
 // 라우트 및 서버 실행
@@ -25,26 +25,26 @@ app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
 
-app.get('/writeview',(req,res)=>{
-    res.sendFile(__dirname+'/writeview/writingPanel.html')
+app.get('/writeview', (req, res) => {
+  res.sendFile(__dirname + '/writeview/writingPanel.html')
 }) //writeview로 들어왔을 때 이 파일을 보내겠다.
 
-app.get('/test2-1.html',(req,res)=>{
-  res.sendFile(__dirname+'/login/test2-1.html')
+app.get('/test2-1.html', (req, res) => {
+  res.sendFile(__dirname + '/login/test2-1.html')
 })//로그인 눌렀을 때 이 파일 보내겠다.
 
-app.get('/test2-2.html',(req,res)=>{
-  res.sendFile(__dirname+'/login/test2-2.html')
+app.get('/test2-2.html', (req, res) => {
+  res.sendFile(__dirname + '/login/test2-2.html')
 })
 
 // 아래 부분은 글쓰기 창에서 upload누르면 자동으로 이게 실행되서 파일 만들고 다른 화면으로 보내는 부분
 app.post('/create_process/', (req, res) => {
   const postData = req.body;
-  const fileName = postData.title+".json"; // 파일 제목에 확장자 추가
+  const fileName = postData.title + ".json"; // 파일 제목에 확장자 추가
   const filefield = postData.field;
 
-  const filePath = path.join(__dirname ,filefield,'file', fileName); // 경로 구성
- 
+  const filePath = path.join(__dirname, filefield, 'file', fileName); // 경로 구성
+
 
   // 폼 데이터를 파일로 저장하는 로직
 
@@ -67,10 +67,10 @@ app.post('/create_process/', (req, res) => {
 app.get('/subview/:field/', (req, res) => {
   const title = req.query.title;
 
-  if(title===undefined){
+  if (title === undefined) {
     subshow(req, res);
   }
-  else{
+  else {
     subshow_two(req, res);
   }
 });
@@ -78,7 +78,7 @@ app.get('/subview/:field/', (req, res) => {
 // subview를 보여주는 부분
 function subshow(req, response) {
   const field = req.params.field
-  fs.readdir(__dirname +`/${field}/file`, function (error, filenames) {
+  fs.readdir(__dirname + `/${field}/file`, function (error, filenames) {
     if (error) {
       console.error(error);
       response.status(500).send('Internal Server Error');
@@ -90,8 +90,8 @@ function subshow(req, response) {
 
     // 파일 목록의 각 파일 이름에 대해 처리
     for (const filename of filenames) {
-      const filePath = path.join(__dirname, field,'file', filename);
-    
+      const filePath = path.join(__dirname, field, 'file', filename);
+
       // 파일을 비동기적으로 읽어옴
       fs.readFile(filePath, 'utf-8', function (err, fileContent) {
         if (err) {
@@ -109,13 +109,13 @@ function subshow(req, response) {
             console.error(error);
           }
         }
-    
+
         completedReads++;
         // 모든 파일을 읽은 후에 응답 전송
         if (completedReads === filenames.length) {
           // fileDataList를 정렬하여 원하는 순서로 정렬할 수 있음
           fileDataList.sort((a, b) => a.filename.localeCompare(b.filename));
-    
+
           // 목록을 생성할 때 파일 데이터의 순서를 유지하도록 수정
           var body = '';
           for (const fileData of fileDataList) {
@@ -127,8 +127,8 @@ function subshow(req, response) {
               <div class="post-content">태그: ${fileData.data.tag}</div>
               </div>`;
           }
-    
-          var template = templateHTML(field,body);
+
+          var template = templateHTML(field, body);
           response.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
           response.end(template);
         }
@@ -137,7 +137,7 @@ function subshow(req, response) {
   });
 }
 // subview에 해당하는 html부분 
- 
+
 
 // 글을 눌렀을 때 나오는 부분
 function subshow_two(req, response) {
@@ -151,9 +151,9 @@ function subshow_two(req, response) {
       return;
     }
 
-    
 
-    fs.readFile(__dirname+`/${field}/file/${title}.json`, 'utf-8', function (err, fileContent) {
+
+    fs.readFile(__dirname + `/${field}/file/${title}.json`, 'utf-8', function (err, fileContent) {
       if (err) {
         console.error(`Error reading file: ${title}`);
         console.error(err);
@@ -166,12 +166,11 @@ function subshow_two(req, response) {
         const title = fileData.title;
         const content = fileData.content;
         const author = fileData.author;
+        var body = '';
 
-        var body ='';
-        
-        var template = templatesubview(fileData);  
-          response.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-          response.end(template);
+        var template = templatesubview(fileData);
+        response.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+        response.end(template);
         // 이후에 필요한 처리를 수행합니다.
         // 예를 들어, 응답으로 데이터를 보낼 수 있습니다.
 
@@ -188,95 +187,98 @@ function subshow_two(req, response) {
 
 
 
-app.get('/update/:field',(req,res)=>{
+app.get('/update/:field', (req, res) => {
   var field = req.params.field;
   var title = req.query.title;
 
-  fs.readFile(__dirname+`/${field}/file/${title}.json`, 'utf-8', function (err, fileContent) {
+  fs.readFile(__dirname + `/${field}/file/${title}.json`, 'utf-8', function (err, fileContent) {
     const fileData = JSON.parse(fileContent);
+
     var fieldData = fileData.field;
-    var body ='';
-    var template = update(fileData,fieldData);
-  
+    var body = '';
+
+    var template = update(fileData, fieldData);
+
     body += template;
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
     res.end(body);
+  })
 })
-})
 
 
 
-app.post('/update_process',(req,res)=>{
+app.post('/update_process', (req, res) => {
   const beforetitle = req.query.title;
 
   var postData = req.body;
-  
+
   const filefield = postData.field;
-  const beforefilePath = path.join(__dirname ,filefield,'file', beforetitle+'.json'); // 경로 구성
-  const filePath =path.join(__dirname,postData.field,'file',postData.title+'.json')
+  const beforefilePath = path.join(__dirname, filefield, 'file', beforetitle + '.json'); // 경로 구성
+  const filePath = path.join(__dirname, postData.field, 'file', postData.title + '.json')
   // 폼 데이터를 파일로 저장하는 로직
 
 
-  fs.rename(beforefilePath,filePath , (error) => {
+  fs.rename(beforefilePath, filePath, (error) => {
     fs.writeFile(filePath, JSON.stringify(postData), 'utf-8', (err) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).send('Internal Server Error');
-    } else {
-      const currentTime = new Date();
-      fs.utimes(filePath, currentTime, currentTime, (err) => {
-        if (err) {
-          console.error(err);
-        }
-      });
-      return res.redirect(`/subview/${filefield}`); //다른 창으로 넘기는 부분
-      
-    }
-  })
+      if (err) {
+        console.error(err);
+        return res.status(500).send('Internal Server Error');
+      } else {
+        const currentTime = new Date();
+        fs.utimes(filePath, currentTime, currentTime, (err) => {
+          if (err) {
+            console.error(err);
+          }
+        });
+        return res.redirect(`/subview/${filefield}`); //다른 창으로 넘기는 부분
+
+      }
+    })
   });
 });
 
-app.get('/delete_process/:field',(req,res)=>{
-  
-var field = req.params.field
- var title = req.query.title
- var path = __dirname + '/' + field + '/file/' + title + '.json'
-console.log(path);
+app.get('/delete_process/:field', (req, res) => {
 
-fs.unlink(path, (error) =>{
-    
-      return res.redirect(`/subview/${field}`);
-  
+  var field = req.params.field
+  var title = req.query.title
+  var path = __dirname + '/' + field + '/file/' + title + '.json'
+
+
+  fs.unlink(path, (error) => {
+
+    return res.redirect(`/subview/${field}`);
+
+  })
+
 })
 
-})
-
-
-function templateHTML(field,body){
-  return `
-  <!DOCTYPE html> 
-<html lang="en">
+var katalog = ` <!DOCTYPE html> 
+<html lang="ko">
 <head>
-  <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="contStyle.css">
 </head>
 <body>
-  <div class="wrap">
-      <div class = "inrto_bg" >
-          <div class="header">
-              <ul class="nav">
-              <li><a href="/subview/back_end">BACK END</a></li>
-              <li><a href="/subview/front_end">FRONT END</a></li>
-              <li><a href="#">COMMUNITY</a></li>
-              </ul>
-              </div>
-          </div>
-          <div class="searchArea">
-              <form>
-                  <input type="search" placeholder="Search">
-                  <button class ="but">검색</button>
-              </form>
-          </div>
+    <div class="wrap">
+        <div class = "inrto_bg" >
+            <div class="header">
+                <ul class="nav">
+                <li><a href="/subview/back_end">BACK END</a></li>
+                <li><a href="/subview/front_end">FRONT END</a></li>
+                <li><a href="#">COMMUNITY</a></li>
+                </ul>
+                </div>
+            </div>
+            <div class="searchArea">
+            <form>
+                <input type="search" placeholder="Search">
+                <button class ="but">검색</button>
+            </form>
+            </div>`
+
+function templateHTML(field, body) {
+  return `${katalog}
           <div class="container">
               <div class="board">
                   <div class="board-header">${field}</div>
@@ -294,32 +296,9 @@ function templateHTML(field,body){
   `;
 }
 
-function templatesubview(fileData){
-  return `  
-  <!DOCTYPE html> 
-  <html lang="en">
-  <head>
-      <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-      <link rel="stylesheet" href="contStyle.css">
-      <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
-      <div class="wrap">
-          <div class = "inrto_bg" >
-              <div class="header">
-                  <ul class="nav">
-                  <li><a href="/subview/back_end">BACK END</a></li>
-                  <li><a href="/subview/front_end">FRONT END</a></li>
-                  <li><a href="#">COMMUNITY</a></li>
-                  </ul>
-                  </div>
-              </div>
-              <div class="searchArea">
-                  <form>
-                      <input type="search" placeholder="Search">
-                      <button class ="but">검색</button>
-                  </form>
-              </div>
+function templatesubview(fileData) {
+  return `  ${katalog}
+ 
   <div class="content">
   <table>
       <tr>
@@ -379,43 +358,37 @@ function templatesubview(fileData){
 `
 }
 
-function update(fileData,fieldData) {
+function update(fileData, fieldData) {
   return `<!DOCTYPE html> 
-<html lang="ko">
-<head>
-    <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="style2.css">
-</head>
-<body>
-    <div class="wrap">
-        <div class = "inrto_bg" >
-            <div class="header">
-                <ul class="nav">
-                <li><a href="/subview/back_end">BACK END</a></li>
-                <li><a href="/subview/front_end">FRONT END</a></li>
-                <li><a href="#">COMMUNITY</a></li>
-                </ul>
-                </div>
-            </div>
-            <div class="searchArea">
-                <form>
-                    <input type="search" placeholder="Search">
-                    <button class ="but">검색</button>
-                </form>
-            </div>
-        <!-- <div class="list">
-            <ul>
-                <li><a href="backendPanel.html">BACKEND 게시판</a></li>
-                <li><a href="FrontendPanel.html">FRONTEND 게시판</a></li>
-                <li><a href="allPanel.html">전체게시판</a></li>
-            </ul>
-        </div> -->
-    
-    <!-- 다른 게시판으로 이동 -->
-   
-
-   <!-- 글쓰기 패널 -->
+  <html lang="ko">
+  <head>
+      <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="style2.css">
+  </head>
+  <body>
+      <div class="wrap">
+          <div class = "inrto_bg" >
+              <div class="header">
+                  <ul class="nav">
+                  <li><a href="/subview/back_end">BACK END</a></li>
+                  <li><a href="/subview/front_end">FRONT END</a></li>
+                  <li><a href="#">COMMUNITY</a></li>
+                  </ul>
+                  </div>
+              </div>
+              <div class="searchArea">
+                  <form>
+                      <input type="search" placeholder="Search">
+                      <button class ="but">검색</button>
+                  </form>
+              </div>
+              <div class="searchArea">
+                  <form>
+                      <input type="search" placeholder="Search">
+                      <button class ="but">검색</button>
+                  </form>
+              </div>
    <div>
         <form action="/update_process?title=${fileData.title}" method="post">
         <table class="radioBtn">
@@ -484,7 +457,6 @@ else if(${fieldData}==front_end){
 </body>
 </html>`}
 
-  app.listen(3000, () => {
-    console.log('서버가 실행되었습니다.');
-  });
-  
+app.listen(3000, () => {
+  console.log('서버가 실행되었습니다.');
+});
