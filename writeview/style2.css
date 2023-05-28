@@ -122,7 +122,8 @@ select{
     justify-content: center;
     align-items: center;
     position: relative;
-    height: 40px; /* 높이 조절 */
+    height: 30px; /* 높이 조절 */
+    margin-bottom: 20px;
 
   }
 
