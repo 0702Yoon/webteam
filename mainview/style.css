@@ -385,13 +385,20 @@ section:first-child::before {
 
 /* 카카오 로그아웃 버튼 styles */
 #kakao-logout-btn {
-  font-family: "Barlow Condensed", sans-serif;
-  font-size: 17px;
-  font-weight: bold;
-  color: #000;
-  background-color: #ffff00;
+  background-color: red;
+  color: white;
   border: none;
-  padding: 13px;
+  padding: 10px 45px;
+  margin-top: 20px;
+  font-size: 15px;
+  font-weight: lighter;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 40px; /* 높이 조절 */
 }
 
 /* greeting styles */
@@ -401,5 +408,22 @@ section:first-child::before {
   font-weight: bold;
   color: #000;
   background-color: #fff;
-  border: dashed;
+  border: 2px solid black;
+}
+
+#kakao-login-btn {
+  background-color: red;
+  color: white;
+  border: none;
+  padding: 10px 45px;
+  margin-top: 20px;
+  font-size: 15px;
+  font-weight: lighter;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 40px; /* 높이 조절 */
 }
