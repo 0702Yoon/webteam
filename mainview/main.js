@@ -72,21 +72,18 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-// 카카오 로그인 버튼을 생성하고 이벤트를 처리하는 함수
-function createKakaoLoginButton() {
-  Kakao.init("5655e0aa2e406b874cfaff134add8648"); // 카카오 앱의 JavaScript 키를 사용하여 Kakao.init()을 호출
+function loginWithKakao() {
+  Kakao.init("5655e0aa2e406b874cfaff134add8648"); // 카카오 개발자 계정에서 발급받은 API 키로 초기화
 
-  Kakao.Auth.createLoginButton({
-    container: "#kakao-login-btn",
+  Kakao.Auth.loginForm({
     success: function (authObj) {
-      // 로그인 성공 시 index2.html로 이동
-      window.location.href = "index2.html";
+      // 로그인에 성공한 경우 처리할 코드
+      window.location.href = "index2.html"; // 로그인 성공 시 index2.html로 이동
     },
     fail: function (err) {
-      alert("Kakao login failed: " + JSON.stringify(err));
+      // 로그인에 실패한 경우 처리할 코드
+      console.log(err);
     },
   });
 }
 
-// 페이지 로드 시 카카오 로그인 버튼 생성 함수 호출
-window.addEventListener("DOMContentLoaded", createKakaoLoginButton);
