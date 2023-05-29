@@ -93,11 +93,6 @@ section {
 span.red {
   color: red;
 }
-
-span.yellow {
-  color: yellow;
-}
-
 section:first-child {
   height: 100vh;
   background: url(https://cdn.pixabay.com/photo/2016/03/16/16/27/puzzle-1261138_960_720.jpg)
