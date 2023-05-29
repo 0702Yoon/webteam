@@ -331,7 +331,7 @@ function templatesubview(fileData) {
       <tr>
           <th width="180px">카카오톡 링크</th>
           <th width="50px">:</th>
-          <td><a href="#"> https://open.kakao.com/o/gqjrlq8e</a></td>
+          <td><a href="https://open.kakao.com/o/gqjrlq8e" target="_blank">https://open.kakao.com/o/gqjrlq8e</a></td>
       </tr>
       <tr height="30px"></tr>
       <tr>
