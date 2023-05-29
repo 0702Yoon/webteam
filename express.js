@@ -18,6 +18,7 @@ app.use('/writeview', express.static(__dirname + '/writeview'));
 app.use('/subview', express.static(__dirname + '/subview'));
 app.use('/update', express.static(__dirname + '/writeview'));
 app.use('/update', express.static(__dirname + '/subview'));
+
 // 앞에 인자의 홈페이지에 들어왔을 때 뒤에 파일안에 있는 css를 쓰기 위해서 호출한 것. __dirname은 현재 js 위치에요.
 
 // 라우트 및 서버 실행
@@ -40,11 +41,11 @@ app.get('/test2-2.html', (req, res) => {
 // 아래 부분은 글쓰기 창에서 upload누르면 자동으로 이게 실행되서 파일 만들고 다른 화면으로 보내는 부분
 app.post('/create_process/', (req, res) => {
   const postData = req.body;
+  console.log(postData)
   const fileName = postData.title + ".json"; // 파일 제목에 확장자 추가
   const filefield = postData.field;
 
   const filePath = path.join(__dirname, filefield, 'file', fileName); // 경로 구성
-
 
   // 폼 데이터를 파일로 저장하는 로직
 
@@ -360,7 +361,7 @@ function templatesubview(fileData) {
 
 function update(fileData, fieldData) {
   return `<!DOCTYPE html> 
-  <html lang="ko">
+  <html lang="en">
   <head>
       <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
       <link rel="stylesheet" href="style.css">
@@ -371,91 +372,74 @@ function update(fileData, fieldData) {
           <div class = "inrto_bg" >
               <div class="header">
                   <ul class="nav">
-                  <li><a href="/subview/back_end">BACK END</a></li>
-                  <li><a href="/subview/front_end">FRONT END</a></li>
-                  <li><a href="#">COMMUNITY</a></li>
+                      <li><a href="/subview/back_end">BACK END</a></li>
+                      <li><a href="/subview/front_end">FRONT END</a></li>
+                      <li><a href="#">COMMUNITY</a></li>
                   </ul>
                   </div>
               </div>
-              <div class="searchArea">
-                  <form>
-                      <input type="search" placeholder="Search">
-                      <button class ="but">검색</button>
-                  </form>
+  
+     <!-- 글쓰기 패널 -->
+     <div>
+      <form action="/update_process/?title=${fileData.title}" method="post">
+          <br>
+              <table class="write">
+                  <tr height="80px">
+                      <td><h2><b>모집 글 수정하기!</b></h2></td>
+                  </tr>
+                  <tr>
+                      <td>
+                      <select class="select" name="field" id="fieldSelect">
+                           <option value="">--모집글의 종류를 선택해주세요--</option>
+                          <option value="back_end">BACK END</option>
+                          <option value="front_end">FRONT END</option>
+                          <option value="#">COMMUNITY</option>
+                      </select>
+                   </td>
+                  </tr>
+                  <tr>
+                      <td><input name="author" placeholder="작성자 이름" value="${fileData.author}"></td>   
+                      
+                  </tr>
+                  <tr>
+                      <td><input type="text" name="title" placeholder="제목을 입력해주세요" value="${fileData.title}"></td>
+                  </tr>
+                  <tr>
+                      <td><textarea style="overflow-x: hidden;" type="text" class="text" placeholder="내용을 입력해주세요" name="content" >${fileData.content}</textarea></td>
+                  </tr>
+                  <tr>
+                      <td ><input type="text" placeholder="태그를 달아주세요" name="tag" value = "${fileData.tag}"></td>
+                  </tr>
+                  <tr>
+                      <td><input placeholder="카카오톡 링크를 입력하세요"></td>
+                  </tr>
+                  <tr>
+                      <td><input type="file"></td>
+                  </tr>
+                  <tr height="30px"></tr>
+              </table>
+             
+              <div class="Submit">
+                  <tr>
+                      <td class="td"><button  type="submit">Upload</button></td>
+                  </tr>
+              </form>
               </div>
-              <div class="searchArea">
-                  <form>
-                      <input type="search" placeholder="Search">
-                      <button class ="but">검색</button>
-                  </form>
-              </div>
-   <div>
-        <form action="/update_process?title=${fileData.title}" method="post">
-        <table class="radioBtn">
-            <tr>
-                <th>모집 분야</th>
-            </tr>
-            <tr>
-                <td>
-                    <input type="radio" name="field" value="back_end" id="back_end">
-                    <label for="backend">backend</label>
-                </td>
-                <td>
-                    <input type="radio" name="field" value="front_end" id="front_end">
-                    <label for="frontend">frontend</label>
-                </td>
-                <td>
-                    <input type="radio" name="field" value="all" id="both">
-                    <label for="both">both</label>
-                </td>
-            </tr>
-            
-        <table class="write">
-           
-            <tr>
-                <th>작성자</th>
-                <td><input name="author" placeholder="작성자 이름" class = "author" value="${fileData.author}"></td>   
-                
-            </tr>
-            <tr>
-                <th>제목</th>
-                <td><input type="text" class = "title" name="title" placeholder="제목을 입력해주세요" value="${fileData.title}"></td>
-            </tr>
-            <tr>
-                <th>모집 내용</th>
-                <td><textarea type="text" class="text" placeholder="내용을 입력해주세요" name="content" class = "content" >${fileData.content}</textarea></td>
-            </tr>
-            <tr>
-                <th>태그</th>
-                <td ><input type="text" placeholder="태그를 달아주세요" name="tag" class = "tag" value = "${fileData.tag}"></td>
-            </tr>
-            <tr>
-                <th>카카오톡 링크</th>
-                <td><input></td>
-            </tr>
-        </table>
-        </div>
-        <div class="submit_btn">
-            <tr>
-                <td><button type="submit">upload</button></td>
-            </tr>
-            
-        </div>
-    </form>
-</div>
-<script>
+          </div>
 
-if(${fieldData}==back_end){
-    var field = document.getElementById("back_end");
-    field.checked=true;
-} 
-else if(${fieldData}==front_end){
-    var field = document.getElementById("front_end");
-    field.checked=true;
-}    
+<script>
+var fieldData = "${fieldData}"; // fieldData 변수의 값을 JavaScript로 가져온다고 가정합니다.
+var selectElement = document.getElementById("fieldSelect");
+
+// fieldData 값에 해당하는 옵션을 선택합니다.
+if (fieldData == "back_end") {
+  selectElement.value = "back_end";
+} else if (fieldData == "front_end") {
+  selectElement.value = "front_end";
+}
 </script>
-</body>
-</html>`}
+  </body>
+  </html>`}
 
 app.listen(3000, () => {
   console.log('서버가 실행되었습니다.');
