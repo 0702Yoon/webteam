@@ -437,6 +437,7 @@ section:first-child::before {
   color: #000;
   background-color: #fff;
   border: 2px solid black;
+  text-align: center;
 }
 
 #kakao-login-btn {
