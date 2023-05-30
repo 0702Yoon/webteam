@@ -1,0 +1,18 @@
+#Logo {
+    font-family: 'Barlow Condensed', sans-serif;
+  font-family: 'PT Sans', sans-serif;
+  font-family: 'Teko', sans-serif;
+  text-decoration: none;
+  color: white;
+  font-size: 55px;
+  display: inline-block;
+  position: absolute;
+  margin-top: 7px;
+  /* margin-right: 89%;
+  top: -35px; */
+  
+  margin-right: 87%;
+  top: -35px;
+  text-shadow: 1px 1px 5px black;
+  }
+  
