@@ -5,6 +5,8 @@ const bodyParser = require('body-parser');
 const path = require('path');
 
 
+
+
 // 필요한 모듈 호출
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -41,7 +43,6 @@ app.get('/test2-2.html', (req, res) => {
 // 아래 부분은 글쓰기 창에서 upload누르면 자동으로 이게 실행되서 파일 만들고 다른 화면으로 보내는 부분
 app.post('/create_process/', (req, res) => {
   const postData = req.body;
-  console.log(postData)
   const fileName = postData.title + ".json"; // 파일 제목에 확장자 추가
   const filefield = postData.field;
 
@@ -120,13 +121,12 @@ function subshow(req, response) {
           // 목록을 생성할 때 파일 데이터의 순서를 유지하도록 수정
           var body = '';
           for (const fileData of fileDataList) {
-            body += `<div>
-            <div class="post-tile">
-              <a href="/subview/${field}?title=${fileData.data.title}">
-              ${fileData.data.title}</a></div>
-              <div class="post-author">작성자: ${fileData.data.author}</div> 
-              <div class="post-content">태그: ${fileData.data.tag}</div>
-              </div>`;
+            body += ` <tr>
+            <td class="tdc">1</td>
+            <td class="tdc"> <a href="/subview/${field}?title=${fileData.data.title}">${fileData.data.title}</a></td>
+            <td class="tdc">${fileData.data.author}</td>
+            <td class="tdc">2023-05-29</td>
+        </tr>`;
           }
 
           var template = templateHTML(field, body);
@@ -257,13 +257,20 @@ var katalog = ` <!DOCTYPE html>
 <html lang="ko">
 <head>
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="contStyle.css">
+    <link rel="stylesheet" href="contentCss.css"> 
+    <link rel="stylesheet" href="subviewList.css">
+    <script>
+function redirectToAbsoluteURL() {
+  window.location.href = "http://localhost:3000/index2.html";
+}
+</script>
 </head>
 <body>
     <div class="wrap">
         <div class = "inrto_bg" >
-            <div class="header">
+        <a id="Logo" href="#" onclick="redirectToAbsoluteURL()">THE<br> PUZZLE</a>
+        <div class="header">
+
                 <ul class="nav">
                 <li><a href="/subview/back_end">BACK END</a></li>
                 <li><a href="/subview/front_end">FRONT END</a></li>
@@ -280,16 +287,32 @@ var katalog = ` <!DOCTYPE html>
 
 function templateHTML(field, body) {
   return `${katalog}
-          <div class="container">
-              <div class="board">
-                  <div class="board-header">${field}</div>
-                  <div class="board-content">
-                  ${body}   
-                  </div>
-              </div>
-          </div>
-      </div>
-  </div>
+  <div class="container">
+  <h1>${field}</h1><br>
+  <div class="board">
+      <table class ="table">
+          <thead class="thead">
+              <tr>
+                  <td>번호</td>
+                  <td>글쓴이</td>
+                  <td>제목</td>
+                  <td>작성일</td>
+              </tr>
+          </thead>
+
+                  <tbody class ="tbody">
+                  ${body}
+                  </tbody>
+        </table>  
+                  <div class="page-wrap">
+                  <ul class="page-nation">
+                      <li><a href="/board/list?p=1">1</a></li>
+                      <li><a href="/board/list?p=2">2</a></li>
+                      <li><a href="/board/list?p=3">3</a></li>
+                      <li><a href="/board/list?p=4">4</a></li>
+                      <li><a href="/board/list?p=5">5</a></li>
+                  </ul>
+              </div>    
   <button onclick="window.location.href='/writeview'">글쓰기</button>
 </body>
 
@@ -331,7 +354,7 @@ function templatesubview(fileData) {
       <tr>
           <th width="180px">카카오톡 링크</th>
           <th width="50px">:</th>
-          <td><a href="https://open.kakao.com/o/gqjrlq8e" target="_blank">https://open.kakao.com/o/gqjrlq8e</a></td>
+          <td><a href="#"> https://open.kakao.com/o/gqjrlq8e</a></td>
       </tr>
       <tr height="30px"></tr>
       <tr>
