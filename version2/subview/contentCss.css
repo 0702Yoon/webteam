@@ -55,13 +55,20 @@
         text-shadow: 4px 4px 10px black;
         cursor: pointer;
 }
-.content{
+.content{ 
     margin: auto;
+    text-align: left;
 }
 .content table{
     margin: auto;
     font-size: 20px;
     word-break: break-all;
+}
+th{
+    font-size: 20px;
+}
+td{
+    font-size: 17px;
 }
 .content th{
     vertical-align : top;
