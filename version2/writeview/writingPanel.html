@@ -4,33 +4,23 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="style2.css">
-    <link rel="stylesheet" href="logo.css">
-    <script>
-        function redirectToAbsoluteURL() {
-          window.location.href = "http://localhost:3000/index2.html";
-        }
-        </script>
-</head>
-<body>
 </head>
 <body>
     <div class="wrap">
         <div class = "inrto_bg" >
-        <a id="Logo" href="#" onclick="redirectToAbsoluteURL()">THE<br> PUZZLE</a>
-        <div class="header">
-
+            <div class="header">
                 <ul class="nav">
-                <li><a href="/subview/back_end">BACK END</a></li>
-                <li><a href="/subview/front_end">FRONT END</a></li>
-                <li><a href="#">COMMUNITY</a></li>
+                    <li><a href="/subview/back_end">BACK END</a></li>
+                    <li><a href="/subview/front_end">FRONT END</a></li>
+                    <li><a href="#">COMMUNITY</a></li>
                 </ul>
                 </div>
             </div>
             <div class="searchArea">
-            <form>
-                <input type="search" placeholder="Search">
-                <button class ="but">검색</button>
-            </form>
+                <form>
+                    <input type="search" placeholder="Search">
+                    <button class ="but">검색</button>
+                </form>
             </div>
 
    <!-- 글쓰기 패널 -->
@@ -43,10 +33,10 @@
                 </tr>
                 <tr>
                     <td>
-                    <select class="select" name="field">
+                    <select class="select" name="selectSort">
                          <option value="">--모집글의 종류를 선택해주세요--</option>
-                        <option value="back_end">BACK END</option>
-                        <option value="front_end">FRONT END</option>
+                        <option value="/subview/back_end">BACK END</option>
+                        <option value="/subview/front_end">FRONT END</option>
                         <option value="#">COMMUNITY</option>
                     </select>
                 </td>
@@ -59,7 +49,7 @@
                     <td><input type="text" name="title" placeholder="제목을 입력해주세요"></td>
                 </tr>
                 <tr>
-                    <td><textarea style="overflow-x: hidden;" type="text" class="text" placeholder="내용을 입력해주세요" name="content" ></textarea></td>
+                    <td><textarea type="text" class="text" placeholder="내용을 입력해주세요" name="content" ></textarea></td>
                 </tr>
                 <tr>
                     <td ><input type="text" placeholder="태그를 달아주세요" name="tag"></td>
