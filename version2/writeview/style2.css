@@ -78,7 +78,6 @@ select{
 .write .text{
     table-layout: fixed;
     height: 300px; white-space: pre-line; word-break: break-all;
-    overflow: scroll;
 }
 /* .submit_btn{
    text-align: center;
@@ -122,12 +121,9 @@ select{
     justify-content: center;
     align-items: center;
     position: relative;
-    height: 30px; /* 높이 조절 */
-    margin-bottom: 20px;
+    height: 40px; /* 높이 조절 */
 
   }
-
-
 
   .Submit button:hover  {
     background-color: darkred;
