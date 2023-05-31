@@ -326,50 +326,66 @@ function templatesubview(fileData) {
   return `  ${katalog}
  
   <div class="content">
-  <table>
-      <tr>
-          <th>진행 상태 : </th>
-          <td></td>
-          <td>상태(모집중)</td>
-          <td width="50px"></td>
-          <th>모집 분야 :</th>
-          <td></td>
-          <td>${fileData.field}</td>
-          <tr height="50px"></tr>
-      </tr>
-      </table>
-      <hr>
       <table class="content">
           <tr height="50px"></tr>
       <tr>
+          <th>⭕</th>
+          <th>모집 분야</th>
+      </tr>
+      <tr>
+          <td></td>
+          <td>${fileData.field}</td>
+      </tr>
+      <tr height="30px"></tr>
+      <tr>
+      <th>⭕</th>
           <th>작성자</th>
-          <th width="50px">:</th>
+          
+      </tr>
+      <tr>
+          <td></td>
           <td>${fileData.author}</td>
       </tr>
       <tr height="30px"></tr>
       <tr>
+          <th>⭕</th>
           <th>제목</th>
-          <th width="50px">:</th>
+          
+      </tr>
+      <tr>
+          <td></td>
           <td>${fileData.title}</td>
       </tr>
       <tr height="30px"></tr>
       <tr>
+          <th>⭕</th>
           <th width="180px">카카오톡 링크</th>
-          <th width="50px">:</th>
+          
+      </tr>
+      <tr>
+          <td></td>
           <td><a href="#"> https://open.kakao.com/o/gqjrlq8e</a></td>
       </tr>
       <tr height="30px"></tr>
       <tr>
+          <th>⭕</th>
           <th>모집 내용</th>
-          <th width="50px">:</th>
+          
+      </tr>
+      <tr>
+          <td></td>
           <td>${fileData.content}
           </td>
       </tr>
       <tr height="30px"></tr>
       <tr>
+          <th>⭕</th>
           <th>태그</th>
-          <th width="50px">:</th>
-          <td width="800px">${fileData.tag}</td>
+          
+      </tr>
+      <tr>
+          <td></td>
+          <td width="600px">${fileData.tag}</td>
           <tr height="100px"></tr>
       </tr>
   </table>
