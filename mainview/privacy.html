@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>개인정보</title>
+    <style>
+      /* 공통 스타일 */
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f1f1f1;
+        padding: 20px;
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      /* 사용자 정보 스타일 */
+      .user-info {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+      }
+
+      .user-info p {
+        margin: 0;
+        font-weight: bold;
+        line-height: 1.5;
+        margin-bottom: 10px; /* 각 항목 사이 간격 늘리기 */
+      }
+
+      .user-info span {
+        font-weight: normal;
+      }
+
+      #userprofile {
+        width: 200px;
+        height: 200px;
+        margin-top: 20px;
+        border-radius: 50%;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      }
+
+      /* 추가 스타일 */
+      .user-info-divider {
+        border-top: 1px solid #ccc;
+        margin-top: 20px;
+        padding-top: 20px;
+      }
+
+      /* 돌아가기 버튼 스타일 */
+      .back-button {
+        display: block;
+        margin: 20px auto;
+        padding: 10px 20px;
+        width: 80px;
+        font-size: 18px;
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <h1>개인정보</h1>
+    <div class="user-info">
+      <p>카카오톡 로그인 사용자 이름: <span id="username"></span></p>
+      <div class="user-info-divider"></div>
+      <!-- 각 항목을 구분할 경계선 -->
+      <p>카카오톡 로그인 이메일: <span id="useremail"></span></p>
+      <div class="user-info-divider"></div>
+      <!-- 각 항목을 구분할 경계선 -->
+      <div>
+        <p>카카오톡 로그인 사용자 프로필 사진:</p>
+        <img id="userprofile" src="" alt="프로필 사진" />
+      </div>
+    </div>
+
+    <a href="index2.html" class="back-button">돌아가기</a>
+
+    <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script>
+      function initialize() {
+        Kakao.init("5655e0aa2e406b874cfaff134add8648"); // 카카오 앱의 JavaScript 키를 사용하여 Kakao.init()을 호출
+
+        // 카카오 로그인한 사용자의 정보 받아오기
+        Kakao.API.request({
+          url: "/v2/user/me",
+          success: function (response) {
+            const username = response.properties.nickname;
+            const useremail = response.kakao_account.email;
+            const userprofile = response.properties.profile_image;
+
+            // 출력
+            document.getElementById("username").textContent = username;
+            document.getElementById("useremail").textContent = useremail;
+            document.getElementById("userprofile").src = userprofile;
+          },
+          fail: function (error) {
+            console.log("Failed to get user info: " + JSON.stringify(error));
+          },
+        });
+      }
+
+      window.onload = initialize;
+    </script>
+  </body>
+</html>
