@@ -1,6 +1,19 @@
 // 로그인 성공 후 index2.html 페이지에서 실행할 함수
 function greetUser(nickname) {
-  document.getElementById("greeting").textContent = nickname + "님 안녕하세요";
+  const greeting = document.getElementById("greeting");
+  greeting.textContent = nickname + "님 안녕하세요";
+
+  greeting.addEventListener("click", function () {
+    window.location.href = "privacy.html";
+  });
+
+  greeting.addEventListener("mouseover", function () {
+    greeting.style.color = "red";
+  });
+
+  greeting.addEventListener("mouseout", function () {
+    greeting.style.color = "white";
+  });
 }
 
 // 카카오 로그아웃 버튼 클릭 시 처리하는 함수
