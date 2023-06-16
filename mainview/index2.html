@@ -27,8 +27,7 @@
         </li>
 
         <ul class="top_nav">
-          <li><a href="#home-section">HOMEs</a></li>
-          <li><a href="#about-section">ABOUT</a></li>
+          <li><a href="#home-section">HOME's</a></li>
           <li><a href="#puzzling-section">PUZZLING</a></li>
           <li><a href="#frontend-section">FRONT END</a></li>
           <li><a href="#backend-section">BACK END</a></li>
@@ -43,37 +42,24 @@
       </div>
     </section>
 
-    <section id="about-section">
-      <div>
-        <h2>
-          안녕하세요! The Puzzle은 더 나은 세상을 위해 개발자들의 모임을
-          지원하고 있는 커뮤니티입니다.<br /><br />
-          우리는 Backend와 Frontend 분야를 나눠 역할을 분담하여 효율성을
-          높였습니다.<br /><br />
-          우리는 이 과정을 <span class="red">Puzzling</span>이라고 부르며 이를
-          통해 서로의 장점을 최대한 발휘하고 단점을 극복할 수 있습니다.<br /><br />
-          The Puzzle은 자유로운 소통과 협업을 중요시합니다.<br /><br />
-          우리는 개발자들이 자유롭게 의견을 나누고 서로 화합할 수 있는 공간을
-          제공합니다.<br /><br />
-          당신이 바로 마지막 퍼즐 조각입니다. 지금 바로 참여해보세요!
-        </h2>
-      </div>
-    </section>
 
     <section id="puzzling-section">
       <div class="container">
-        <button class="button" onclick="flip()">
-          <div
-            class="front"
-            style="
-              background-image: url(https://img.freepik.com/free-photo/jigsaw-puzzle-w…e9725d0a0a61a6c8931adda1deb18bff1af2c1f32d5d35f73);
-            "
-          ></div>
-        </button>
-        <div class="back">
-          <!-- 뒷면 -->
-          <a href="#" id="selectBack">Back</a>
-          <button onclick="flip()">뒤집기</button>
+        <div class="button flip-container" ontouchstart="this.classList.toggle('hover');">
+          <div class="flipper">
+            <div class="front">
+              <br><br><br>
+              <h2>안녕하세요! The Puzzle은 더 나은 세상을 위해 개발자들의 모임을 지원하고 있는 커뮤니티입니다.<br><br>
+              우리는 Backend와 Frontend 분야를 나눠 역할을 분담하여 효율성을 높였습니다.<br><br> 
+              우리는 이 과정을 <span class="red">Puzzling</span>이라고 부르며 이를 통해<br><br> 서로의 장점을 최대한 발휘하고 단점을 극복할 수 있습니다.<br><br>
+              The Puzzle은 자유로운 소통과 협업을 중요시합니다.<br><br> 
+              우리는 개발자들이 자유롭게 의견을 나누고 서로 화합할 수 있는 공간을 제공합니다.<br><br> 
+              당신이 바로 마지막 퍼즐 조각입니다. 지금 바로 참여해보세요!</h2>
+            </div>
+            <div class="back">
+              <img src="picture/unkle.jpg" alt="버튼 이미지">
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -87,7 +73,7 @@
     </section>
 
     <section id="community-section">
-      <a href="/subview/all" class="btn">Community</a>
+      <a href="/subview/comunity" class="btn">Community</a>
     </section>
 
     <script src="main2.js"></script>
