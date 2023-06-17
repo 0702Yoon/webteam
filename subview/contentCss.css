@@ -57,13 +57,20 @@
 }
 .content{
     margin: auto;
+    
 }
+
 .content table{
     margin: auto;
     font-size: 20px;
     word-break: break-all;
+
+   
 }
 .content th{
     vertical-align : top;
 }
 
+.container{
+    background-color: black;
+}
