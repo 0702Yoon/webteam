@@ -8,7 +8,7 @@ function greetUser(nickname) {
   });
 
   greeting.addEventListener("mouseover", function () {
-    greeting.style.color = "red";
+    greeting.style.color = "white";
   });
 
   greeting.addEventListener("mouseout", function () {
