@@ -120,14 +120,16 @@ function subshow(req, response) {
 
           // 목록을 생성할 때 파일 데이터의 순서를 유지하도록 수정
           var body = '';
+          var i=1;
           for (const fileData of fileDataList) {
             body += ` <tr>
-            <td class="tdc">1</td>
+            <td class="tdc">${i}</td>
             <td class="tdc"> <a href="/subview/${field}?title=${fileData.data.title}">${fileData.data.title}</a></td>
             <td class="tdc">${fileData.data.author}</td>
             <td class="tdc">2023-05-29</td>
         </tr>`;
-          }
+            i++;
+      }
 
           var template = templateHTML(field, body);
           response.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
@@ -259,6 +261,8 @@ var katalog = ` <!DOCTYPE html>
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="contentCss.css"> 
     <link rel="stylesheet" href="subviewList.css">
+    <link rel="stylesheet" href="mainview/text.css">
+    <link rel="stylesheet" href="logo.css">
     <script>
 function redirectToAbsoluteURL() {
   window.location.href = "http://localhost:3000/index2.html";
@@ -274,7 +278,7 @@ function redirectToAbsoluteURL() {
                 <ul class="nav">
                 <li><a href="/subview/back_end">BACK END</a></li>
                 <li><a href="/subview/front_end">FRONT END</a></li>
-                <li><a href="#">COMMUNITY</a></li>
+                <li><a href="/subview/comunity">COMMUNITY</a></li>
                 </ul>
                 </div>
             </div>
@@ -288,33 +292,34 @@ function redirectToAbsoluteURL() {
 function templateHTML(field, body) {
   return `${katalog}
   <div class="container">
-  <h1>${field}</h1><br>
+  <h1 style="color:white;">${field}</h1><br>
   <div class="board">
-    <table class="table">
-        <thead class="thead">
-            <tr>
-                <td>번호</td>
-                <td>글쓴이</td>
-                <td>제목</td>
-                <td>작성일</td>
-            </tr>
-        </thead>
-        <tbody class="tbody">
-            ${body}
-        </tbody>
-    </table>
-    <div class="page-wrap">
-        <ul class="page-nation">
-            <li><a href="/board/list?p=1">1</a></li>
-            <li><a href="/board/list?p=2">2</a></li>
-            <li><a href="/board/list?p=3">3</a></li>
-            <li><a href="/board/list?p=4">4</a></li>
-            <li><a href="/board/list?p=5">5</a></li>
-        </ul>
-        <button class="buttoo" onclick="window.location.href='/writeview'">글쓰기</button>
-    </div>
-   
-</div>
+      <table class ="table">
+          <thead class="thead">
+              <tr>
+                  <td>번호</td>
+                  <td>제목</td>
+                  <td>글쓴이</td>
+                  <td>작성일</td>
+              </tr>
+          </thead>
+
+                  <tbody class ="tbody">
+                  ${body}
+                  </tbody>
+        </table>  
+                  <div class="page-wrap">
+                  <button id="buto" onclick="window.location.href='/writeview'">글쓰기</button>
+                  <ul class="page-nation">
+                      <li><a href="/board/list?p=1">1</a></li>
+                      <li><a href="/board/list?p=2">2</a></li>
+                      <li><a href="/board/list?p=3">3</a></li>
+                      <li><a href="/board/list?p=4">4</a></li>
+                      <li><a href="/board/list?p=5">5</a></li>
+                  </ul>
+              </div>    
+
+</body>
 
 </html>
   `;
@@ -324,8 +329,8 @@ function templatesubview(fileData) {
   return `  ${katalog}
  
   <div class="content">
-  <table>
-      <tr>
+    <table class="mids">
+      <tr class ="ttr">
           <th>진행 상태 : </th>
           <td></td>
           <td>상태(모집중)</td>
@@ -372,12 +377,13 @@ function templatesubview(fileData) {
       </tr>
   </table>
 </div>
-<div class='modify'>
-<button onclick="window.location.href='/update/${fileData.field}?title=${fileData.title}'">수정하기</button>
-</div>
 <div class='delete'>
-<button onclick="window.location.href='/delete_process/${fileData.field}?title=${fileData.title}'">삭제하기</button>
+<button id = "buto" onclick="window.location.href='/delete_process/${fileData.field}?title=${fileData.title}'">삭제하기</button>
 </div>
+<div class='modify'>
+<button id = "buto" onclick="window.location.href='/update/${fileData.field}?title=${fileData.title}'">수정하기</button>
+</div>
+
 </body>
 `
 }
@@ -387,17 +393,24 @@ function update(fileData, fieldData) {
   <html lang="en">
   <head>
       <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="logo.css">
       <link rel="stylesheet" href="style.css">
       <link rel="stylesheet" href="style2.css">
+      <script>
+      function redirectToAbsoluteURL() {
+        window.location.href = "http://localhost:3000/index2.html";
+      }
+      </script>
   </head>
   <body>
       <div class="wrap">
           <div class = "inrto_bg" >
+          <a id="Logo" href="#" onclick="redirectToAbsoluteURL()">THE<br> PUZZLE</a>
               <div class="header">
                   <ul class="nav">
                       <li><a href="/subview/back_end">BACK END</a></li>
                       <li><a href="/subview/front_end">FRONT END</a></li>
-                      <li><a href="#">COMMUNITY</a></li>
+                      <li><a href="/subview/comunity">COMMUNITY</a></li>
                   </ul>
                   </div>
               </div>
@@ -416,7 +429,7 @@ function update(fileData, fieldData) {
                            <option value="">--모집글의 종류를 선택해주세요--</option>
                           <option value="back_end">BACK END</option>
                           <option value="front_end">FRONT END</option>
-                          <option value="#">COMMUNITY</option>
+                          <option value="comunity">COMMUNITY</option>
                       </select>
                    </td>
                   </tr>
