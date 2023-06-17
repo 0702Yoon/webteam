@@ -53,13 +53,17 @@
         font-weight: bold;
         margin-top: 20px;
       }
+      #title{
+        margin: 30px;
+        font-size: 40px;
+      }
     </style>
   </head>
   <body>
     <h1>재미로 보는 개발 성향 검사</h1>
     <div id="questionContainer"></div>
-    <button onclick="submitTest()">검사 완료</button>
-    <a href="index2.html"><button>메인화면</button></a>
+    <button onclick="submitTest()" id="selectBtn">검사 완료</button>
+    <a href="index2.html" style="text-decoration: none;"><button>메인화면</button></a>
 
     <script>
       const questions = [
@@ -90,235 +94,71 @@
       ];
 
       const questionContainer = document.getElementById("questionContainer");
+      const selectBtn = document.getElementById("selectBtn");
 
       // 질문과 선택지를 화면에 표시하는 함수
-      function renderQuestion(index) {
-        const question = questions[index];
-        const div = document.createElement("div");
-        div.classList.add("question");
-        div.innerHTML = `
-        <p>${question.question}</p>
-        <select id="question${index}">
-          ${question.options
-            .map(
-              (option, optionIndex) =>
-                `<option value="${optionIndex + 1}">${option}</option>`
-            )
-            .join("")}
-        </select>
-      `;
-        questionContainer.appendChild(div);
+      function renderQuestion() {
+        let questionHTML = "";
+        questions.forEach((question, index) => {
+          questionHTML += `
+          <div class="question">
+            <p>${index + 1}. ${question.question}</p>
+            <select id="answer${index}">
+              <option value="0">${question.options[0]}</option>
+              <option value="1">${question.options[1]}</option>
+            </select>
+          </div>`;
+        });
+        questionContainer.innerHTML = questionHTML;
       }
 
-      // 검사 완료 버튼 클릭 시 결과를 계산하는 함수
+      // 검사 결과 계산 및 표시하는 함수
       function submitTest() {
         const answers = [];
-        for (let i = 0; i < questions.length; i++) {
-          const select = document.getElementById(`question${i}`);
-          const answer = parseInt(select.value, 10);
+        let result = 0;
+
+        // 선택된 답변을 가져와서 배열에 저장
+        questions.forEach((question, index) => {
+          const answerElement = document.getElementById(`answer${index}`);
+          const answer = parseInt(answerElement.value);
           answers.push(answer);
-        }
+        });
 
-        // 결과 계산
-        const result =
-          answers[0] === 1 &&
-          answers[1] === 1 &&
-          answers[2] === 1 &&
-          answers[3] === 1 &&
-          answers[4] === 1
-            ? "당신은 FrontEnd 성향의 개발자입니다!"
-            : answers[0] === 1 &&
-              answers[1] === 1 &&
-              answers[2] === 1 &&
-              answers[3] === 1 &&
-              answers[4] === 2
-            ? "당신은 BackEnd 성향의 개발자입니다!"
-            : answers[0] === 1 &&
-              answers[1] === 1 &&
-              answers[2] === 1 &&
-              answers[3] === 2 &&
-              answers[4] === 1
-            ? "당신은 BackEnd 성향의 개발자입니다!"
-            : answers[0] === 1 &&
-              answers[1] === 1 &&
-              answers[2] === 1 &&
-              answers[3] === 2 &&
-              answers[4] === 2
-            ? "당신은 BackEnd 성향의 개발자입니다!"
-            : answers[0] === 1 &&
-              answers[1] === 1 &&
-              answers[2] === 2 &&
-              answers[3] === 1 &&
-              answers[4] === 1
-            ? "당신은 BackEnd 성향의 개발자입니다!"
-            : answers[0] === 1 &&
-              answers[1] === 1 &&
-              answers[2] === 2 &&
-              answers[3] === 1 &&
-              answers[4] === 2
-            ? "당신은 BackEnd 성향의 개발자입니다!"
-            : answers[0] === 1 &&
-              answers[1] === 1 &&
-              answers[2] === 2 &&
-              answers[3] === 2 &&
-              answers[4] === 1
-            ? "당신은 BackEnd 성향의 개발자입니다!"
-            : answers[0] === 1 &&
-              answers[1] === 1 &&
-              answers[2] === 2 &&
-              answers[3] === 2 &&
-              answers[4] === 2
-            ? "당신은 완벽한 BackEnd 성향의 개발자입니다!"
-            : answers[0] === 1 &&
-              answers[1] === 2 &&
-              answers[2] === 1 &&
-              answers[3] === 1 &&
-              answers[4] === 1
-            ? "당신은 FrontEnd 성향의 개발자입니다!"
-            : answers[0] === 1 &&
-              answers[1] === 2 &&
-              answers[2] === 1 &&
-              answers[3] === 1 &&
-              answers[4] === 2
-            ? "당신은 FrontEnd 성향의 개발자입니다!"
-            : answers[0] === 1 &&
-              answers[1] === 2 &&
-              answers[2] === 1 &&
-              answers[3] === 2 &&
-              answers[4] === 1
-            ? "당신은 FrontEnd 성향의 개발자입니다!"
-            : answers[0] === 1 &&
-              answers[1] === 2 &&
-              answers[2] === 1 &&
-              answers[3] === 2 &&
-              answers[4] === 2
-            ? "당신은 BackEnd 성향의 개발자입니다!"
-            : answers[0] === 1 &&
-              answers[1] === 2 &&
-              answers[2] === 2 &&
-              answers[3] === 1 &&
-              answers[4] === 1
-            ? "당신은 FrontEnd 성향의 개발자입니다!"
-            : answers[0] === 1 &&
-              answers[1] === 2 &&
-              answers[2] === 2 &&
-              answers[3] === 1 &&
-              answers[4] === 2
-            ? "당신은 BackEnd 성향의 개발자입니다!"
-            : answers[0] === 1 &&
-              answers[1] === 2 &&
-              answers[2] === 2 &&
-              answers[3] === 2 &&
-              answers[4] === 1
-            ? "당신은 BackEnd 성향의 개발자입니다!"
-            : answers[0] === 1 &&
-              answers[1] === 2 &&
-              answers[2] === 2 &&
-              answers[3] === 2 &&
-              answers[4] === 2
-            ? "당신은 BackEnd 성향의 개발자입니다!"
-            : answers[0] === 2 &&
-              answers[1] === 1 &&
-              answers[2] === 1 &&
-              answers[3] === 1 &&
-              answers[4] === 1
-            ? "당신은 FrontEnd 성향의 개발자입니다!"
-            : answers[0] === 2 &&
-              answers[1] === 1 &&
-              answers[2] === 1 &&
-              answers[3] === 1 &&
-              answers[4] === 2
-            ? "당신은 FrontEnd 성향의 개발자입니다!"
-            : answers[0] === 2 &&
-              answers[1] === 1 &&
-              answers[2] === 1 &&
-              answers[3] === 2 &&
-              answers[4] === 1
-            ? "당신은 FrontEnd 성향의 개발자입니다!"
-            : answers[0] === 2 &&
-              answers[1] === 1 &&
-              answers[2] === 1 &&
-              answers[3] === 2 &&
-              answers[4] === 2
-            ? "당신은 BackEnd 성향의 개발자입니다!"
-            : answers[0] === 2 &&
-              answers[1] === 1 &&
-              answers[2] === 2 &&
-              answers[3] === 1 &&
-              answers[4] === 1
-            ? "당신은 FrontEnd 성향의 개발자입니다!"
-            : answers[0] === 2 &&
-              answers[1] === 1 &&
-              answers[2] === 2 &&
-              answers[3] === 1 &&
-              answers[4] === 2
-            ? "당신은 BackEnd 성향의 개발자입니다!"
-            : answers[0] === 2 &&
-              answers[1] === 1 &&
-              answers[2] === 2 &&
-              answers[3] === 2 &&
-              answers[4] === 1
-            ? "당신은 BackEnd 성향의 개발자입니다!"
-            : answers[0] === 2 &&
-              answers[1] === 1 &&
-              answers[2] === 2 &&
-              answers[3] === 2 &&
-              answers[4] === 2
-            ? "당신은 BackEnd 성향의 개발자입니다!"
-            : answers[0] === 2 &&
-              answers[1] === 2 &&
-              answers[2] === 1 &&
-              answers[3] === 1 &&
-              answers[4] === 1
-            ? "당신은 완벽한 FrontEnd 성향의 개발자입니다!"
-            : answers[0] === 2 &&
-              answers[1] === 2 &&
-              answers[2] === 1 &&
-              answers[3] === 1 &&
-              answers[4] === 2
-            ? "당신은 FrontEnd 성향의 개발자입니다!"
-            : answers[0] === 2 &&
-              answers[1] === 2 &&
-              answers[2] === 1 &&
-              answers[3] === 2 &&
-              answers[4] === 1
-            ? "당신은 FrontEnd 성향의 개발자입니다!"
-            : answers[0] === 2 &&
-              answers[1] === 2 &&
-              answers[2] === 1 &&
-              answers[3] === 2 &&
-              answers[4] === 2
-            ? "당신은 FrontEnd 성향의 개발자입니다!"
-            : answers[0] === 2 &&
-              answers[1] === 2 &&
-              answers[2] === 2 &&
-              answers[3] === 1 &&
-              answers[4] === 1
-            ? "당신은 FrontEnd 성향의 개발자입니다!"
-            : answers[0] === 2 &&
-              answers[1] === 2 &&
-              answers[2] === 2 &&
-              answers[3] === 1 &&
-              answers[4] === 2
-            ? "당신은 FrontEnd 성향의 개발자입니다!"
-            : answers[0] === 2 &&
-              answers[1] === 2 &&
-              answers[2] === 2 &&
-              answers[3] === 2 &&
-              answers[4] === 1
-            ? "당신은 FrontEnd 성향의 개발자입니다!"
-            : "당신은 BackEnd 성향의 개발자입니다!";
+        // 답변에 따라 결과 계산
+        answers.forEach((answer) => {
+          result += answer;
+        });
 
-        alert(result);
+        let resultMessage = "";
+        let resultImage = "";
 
-        // 검사 완료 후에는 페이지를 리로드하여 다시 검사할 수 있도록 합니다.
-        location.reload();
+        // 결과에 따라 메시지와 이미지 선택
+        if (result >= 0 && result <= 2) {
+          resultMessage = "당신은 프론트엔드 개발자!";
+          resultImage = "frontend.png";
+          message = `프론트엔드 개발자는 사용자가 직접 접하는 웹 페이지의 시각적인 부분을 담당합니다.<br> 
+          주로 HTML, CSS, JavaScript를 사용하여 웹 페이지의 구조, 디자인, 상호작용을 개발합니다.<br> 
+          프론트엔드 개발자는 사용자 경험을 고려하여 사용자 인터페이스를 개발하고, 웹 페이지의 레이아웃, 색상, 글꼴 등을 디자인합니다.<br>
+          또한, 클라이언트 사이드 스크립팅을 통해 웹 페이지의 동적인 기능을 구현하고,<br> 다양한 브라우저와 기기에 대한 호환성을 고려합니다.<br>프론트엔드 개발자는 디자인, 사용자 경험, 웹 표준, 웹 접근성 등에 대한 이해와 역량이 필요합니다.`
+        } else {
+          resultMessage = "당신은 백엔드 개발자!";
+          resultImage = "backend.png";
+          message="백엔드 개발자는 서버 측에서 웹 애플리케이션의 핵심 로직과 데이터 처리를 담당합니다. 주로<br>서버 사이드 언어(예: Java, Python, PHP 등)와 데이터베이스를 사용하여 서버 애플리케이션을<br>개발하고 관리합니다. 백엔드 개발자는 데이터베이스와의 상호작용을 구현하고, 데이터의 저<br>장, 검색, 조작 등을 처리합니다. 또한, 보안, 성능, 확장성 등을 고려하여 서버 애플리케이션을<br> 설계하고 개발합니다. 백엔드 개발자는 서버 사이드 프로그래밍, 데이터베이스 관리, 네트워킹,<br> 시스템 아키텍처 등에 대한 이해와 역량이 필요합니다."
+        } 
+
+        const resultHTML = `
+        <div class="result">
+          <img src="${resultImage}" width="600">
+          <p id="title">${resultMessage}</p>
+          <p id="content">${message}</P>
+        </div>`;
+
+        questionContainer.innerHTML = resultHTML;
+        selectBtn.style.display = "none";
       }
 
-      // 질문들을 화면에 표시합니다.
-      for (let i = 0; i < questions.length; i++) {
-        renderQuestion(i);
-      }
+      // 초기 질문 화면 렌더링
+      renderQuestion();
     </script>
   </body>
 </html>
