@@ -1,0 +1,253 @@
+*{
+    font-family: 'Noto Sans KR', sans-serif;
+    list-style: none;
+    text-decoration: none;
+    border-collapse: collapse;
+    margin: 0px;
+    padding: 0px;
+    color: #000;
+ }   
+
+ .inrto_bg {
+    width: 100%;
+    height: 400px;
+    height: 59vh;
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 1), transparent), url("https://mblogthumb-phinf.pstatic.net/MjAyMDA2MjJfMTQ4/MDAxNTkyNzk3MzMzMjAz.p_RyF5CzMoTSrnHF_u06SQnt-YA-BwFmPar4B3-zHDEg._7uy7il_n-G1oWOY55WtqoL3HGSJ2_x6bnSbr5WlckQg.JPEG.life_n_work/SE-49adbb94-6036-4554-aacd-7e7a3ef4e941.jpg?type=w800");
+    background-size: cover;
+    position: relative;
+}
+
+.inrto_bg::before {
+    content: "";
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to top, rgba(0, 0, 0, 0.01), rgba(0, 0, 0, 0));
+}
+
+.header{
+    display: flex;
+    width: 1280px;
+    margin: auto;
+    height: 86px;
+    bottom: 0;
+    right: 0;
+}
+.searchArea {
+    width: 300px;
+    height: 40px;
+    background: rgba(0, 0, 0, 0.5) none; /* 그라데이션 효과 제거 */
+    border-radius: 5px;
+    margin-top: 50px;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.searchArea > form > input {
+    border: none;
+    width: 250px;
+    height: 40px;
+    background: rgba(249, 249, 249, 0);
+    color: #fff;
+    padding-left: 10px;
+}
+
+.but {
+    width: 46px;
+    height: 40px;
+    color: rgba(0,0,0,0.5);
+    font-weight: bold;
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.but {
+    border-radius: 8px;
+    background-color: rgb(255, 255, 255);
+    height: 40px;
+}
+
+.nav{
+    display: flex;
+    justify-content: flex-end;
+    line-height: 86px;
+    width: calc(1280px - 300px);
+    color: #fff;
+    cursor: pointer;
+}
+
+.nav > li{
+    margin-left: 84px;
+    cursor: pointer;
+}
+
+.nav > li > a {
+    color: #fff;
+        font-size: 20px;
+        float: left;
+        margin: 25px;
+        font-weight: lighter;
+        text-shadow: 4px 4px 10px black;
+        cursor: pointer;
+}
+
+.container {
+    max-width: auto;
+    margin: 0 auto;
+    padding: auto;
+}
+
+.container h1 {
+    text-align: center;
+}
+
+.board{
+    width: 1200px;
+    height: 100%;
+    margin: auto;
+}
+ 
+.table{
+    font-size :20px;
+    border-collapse: collapse;
+    width: 1200px;
+    margin-top:200px;
+    border: 1px solid gray;    
+    text-align: center;  
+}
+
+.thead td {
+    background: #B2B2B2;
+}
+
+.td{
+    height: 40px;
+    border-bottom:1px solid black;
+}
+ 
+.tr td:nth-child(2){
+    width: 750px;
+}
+
+.page-nation li{ 
+    list-style: none;
+} 
+
+.page-wrap {
+    text-align:center;
+    font-size:0;
+ }
+
+.page-nation  {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top:20px;
+}
+
+ 
+
+.page-nation a {
+    display:block;
+    margin:0 3px;
+    float:left;
+    border:1px solid #e6e6e6;
+    width:28px;
+    height:28px;
+    line-height:28px;
+    text-align:center;
+    background-color:#fff;
+    font-size:13px;
+    color:black;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+.page-nation a:hover{
+    background-color:gray;
+    color:white;
+}
+
+.tdc {
+    font-size: 16px;
+}
+.board {
+    margin-top: -10px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    border-radius: 15px;
+    padding-top: 10px;
+  }
+  
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+
+  }
+  
+  .thead {
+    background-color: #333;
+    color: #fff;
+    position: sticky;
+    top: 0;
+    border-radius: 15px;
+  }
+  
+  .thead td {
+    padding: 10px;
+  }
+  
+  .tbody td {
+    padding: 10px;
+  }
+  
+  .tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  .page-wrap {
+    margin-top: 20px;
+    text-align: center;
+  }
+  
+  .page-nation li {
+    display: inline-block;
+    margin-right: 5px;
+  }
+  
+  .page-nation li a {
+    display: block;
+    padding: 5px 10px;
+    background-color: #ccc;
+    color: #333;
+    text-decoration: none;
+    border-radius: 5px;
+  }
+  
+  .page-nation li a:hover {
+    background-color: #333;
+    color: #fff;
+  }
+  .button-container {
+    bottom: 20px;
+    right: 30px;
+    margin-top: 10px;
+    }
+
+   .buttoo{
+    background-color: black;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    float: right;
+    margin-top: 40px;
+}
+

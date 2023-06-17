@@ -290,31 +290,31 @@ function templateHTML(field, body) {
   <div class="container">
   <h1>${field}</h1><br>
   <div class="board">
-      <table class ="table">
-          <thead class="thead">
-              <tr>
-                  <td>번호</td>
-                  <td>글쓴이</td>
-                  <td>제목</td>
-                  <td>작성일</td>
-              </tr>
-          </thead>
-
-                  <tbody class ="tbody">
-                  ${body}
-                  </tbody>
-        </table>  
-                  <div class="page-wrap">
-                  <ul class="page-nation">
-                      <li><a href="/board/list?p=1">1</a></li>
-                      <li><a href="/board/list?p=2">2</a></li>
-                      <li><a href="/board/list?p=3">3</a></li>
-                      <li><a href="/board/list?p=4">4</a></li>
-                      <li><a href="/board/list?p=5">5</a></li>
-                  </ul>
-              </div>    
-  <button onclick="window.location.href='/writeview'">글쓰기</button>
-</body>
+    <table class="table">
+        <thead class="thead">
+            <tr>
+                <td>번호</td>
+                <td>글쓴이</td>
+                <td>제목</td>
+                <td>작성일</td>
+            </tr>
+        </thead>
+        <tbody class="tbody">
+            ${body}
+        </tbody>
+    </table>
+    <div class="page-wrap">
+        <ul class="page-nation">
+            <li><a href="/board/list?p=1">1</a></li>
+            <li><a href="/board/list?p=2">2</a></li>
+            <li><a href="/board/list?p=3">3</a></li>
+            <li><a href="/board/list?p=4">4</a></li>
+            <li><a href="/board/list?p=5">5</a></li>
+        </ul>
+        <button class="buttoo" onclick="window.location.href='/writeview'">글쓰기</button>
+    </div>
+   
+</div>
 
 </html>
   `;
