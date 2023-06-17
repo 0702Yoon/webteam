@@ -446,6 +446,7 @@ h2 {
 }
 
 /* greeting styles */
+/* greeting styles */
 #greeting {
   font-family: "PT Sans", sans-serif;
   font-size: 15px;
@@ -455,6 +456,11 @@ h2 {
   border: none;
   border-radius: 4px;
   text-align: center;
+}
+
+#greeting:hover{
+ 
+  background-color: rgb(75, 74, 74);
 }
 
 #kakao-login-btn {
