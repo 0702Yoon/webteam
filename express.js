@@ -258,11 +258,22 @@ app.get('/delete_process/:field', (req, res) => {
 var katalog = ` <!DOCTYPE html> 
 <html lang="ko">
 <head>
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>퍼즐프로젝트</title>
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="contentCss.css"> 
     <link rel="stylesheet" href="subviewList.css">
     <link rel="stylesheet" href="mainview/text.css">
     <link rel="stylesheet" href="logo.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:ital,wght@0,200;1,200;1,300&family=PT+Sans:ital,wght@1,700&display=swap"
+      rel="stylesheet"
+    />
     <script>
 function redirectToAbsoluteURL() {
   window.location.href = "http://localhost:3000/index2.html";
@@ -327,64 +338,58 @@ function templateHTML(field, body) {
 
 function templatesubview(fileData) {
   return `  ${katalog}
- 
-  <div class="content">
-    <table class="mids">
-      <tr class ="ttr">
-          <th>진행 상태 : </th>
-          <td></td>
-          <td>상태(모집중)</td>
-          <td width="50px"></td>
-          <th>모집 분야 :</th>
-          <td></td>
-          <td>${fileData.field}</td>
-          <tr height="50px"></tr>
-      </tr>
-      </table>
-      <hr>
-      <table class="content">
-          <tr height="50px"></tr>
+  <div class="black">
+  <div class="content2">
+    <div class="head2">
+      <span class="bold">진행 상태: 상태(모집중)</span>
+      <span class="bold">모집 분야: ${fileData.field}</span>
+    </div>
+  
+    <table class="content">
+      <tr height="50px"></tr>
       <tr>
-          <th>작성자</th>
-          <th width="50px">:</th>
-          <td>${fileData.author}</td>
+        <th>제목</th>
+        <th width="50px">:</th>
+        <td>${fileData.title}</td>
       </tr>
       <tr height="30px"></tr>
       <tr>
-          <th>제목</th>
-          <th width="50px">:</th>
-          <td>${fileData.title}</td>
+        <th>작성자</th>
+        <th width="50px">:</th>
+        <td>${fileData.author}</td>
       </tr>
       <tr height="30px"></tr>
       <tr>
-          <th width="180px">카카오톡 링크</th>
-          <th width="50px">:</th>
-          <td><a href="#"> https://open.kakao.com/o/gqjrlq8e</a></td>
+        <th>모집 내용</th>
+        <th width="50px">:</th>
+        <td>${fileData.content}</td>
       </tr>
       <tr height="30px"></tr>
       <tr>
-          <th>모집 내용</th>
-          <th width="50px">:</th>
-          <td>${fileData.content}
-          </td>
+        <th>태그</th>
+        <th width="50px">:</th>
+        <td width="800px">${fileData.tag}</td>
       </tr>
       <tr height="30px"></tr>
       <tr>
-          <th>태그</th>
-          <th width="50px">:</th>
-          <td width="800px">${fileData.tag}</td>
-          <tr height="100px"></tr>
+        <th width="180px">카카오톡 링크</th>
+        <th width="50px">:</th>
+        <td><a href="#"> https://open.kakao.com/o/gqjrlq8e</a></td>
       </tr>
-  </table>
+      <tr height="100px"></tr>
+      <tr>
+        <td colspan="3">
+          <div class='delete'>
+            <button id="buto" onclick="window.location.href='/delete_process/${fileData.field}?title=${fileData.title}'">삭제하기</button>
+          </div>
+          <div class='modify'>
+            <button id="buto" onclick="window.location.href='/update/${fileData.field}?title=${fileData.title}'">수정하기</button>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
 </div>
-<div class='delete'>
-<button id = "buto" onclick="window.location.href='/delete_process/${fileData.field}?title=${fileData.title}'">삭제하기</button>
-</div>
-<div class='modify'>
-<button id = "buto" onclick="window.location.href='/update/${fileData.field}?title=${fileData.title}'">수정하기</button>
-</div>
-
-</body>
 `
 }
 
@@ -416,6 +421,7 @@ function update(fileData, fieldData) {
               </div>
   
      <!-- 글쓰기 패널 -->
+     
      <div>
       <form action="/update_process/?title=${fileData.title}" method="post">
           <br>
@@ -462,6 +468,7 @@ function update(fileData, fieldData) {
               </form>
               </div>
           </div>
+      
 
 <script>
 var fieldData = "${fieldData}"; // fieldData 변수의 값을 JavaScript로 가져온다고 가정합니다.
