@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>재미로 보는 개발 성향 검사</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f1f1f1;
+        padding: 20px;
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      .question {
+        margin-bottom: 20px;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+      }
+
+      p {
+        margin: 0;
+        font-weight: bold;
+      }
+
+      select {
+        margin-top: 10px;
+        padding: 5px;
+        font-size: 16px;
+      }
+      button {
+        display: block;
+        margin: 20px auto;
+        padding: 10px 20px;
+        font-size: 18px;
+        background-color: #4caf50;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: #45a049;
+      }
+      .result {
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 20px;
+      }
+      #title {
+        margin: 30px;
+        font-size: 40px;
+      }
+      #content {
+        margin-bottom: 100px;
+      }
+
+    </style>
+  </head>
+  <body>
+    <h1>재미로 보는 개발 성향 검사</h1>
+    <!-- 결과 출력 -->
+    <div id="questionContainer"></div>
+    <!-- 질문 및 선택지 -->
+    <div class="question">
+      <p>조별 과제에서 당신의 역할은?</p>
+        <checkbox id="question1">
+          <input type='checkbox' name='question1' value='back' onclick='getCheckboxValue()'/>자료조사 및 정리
+          <input type='checkbox' name='question1' value='front' onclick='getCheckboxValue()'/>정리된 자료로 PPT 만들기
+        </checkbox>
+      </div>
+      
+      <div class="question">
+        <p><span style='color: yellow; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;'>파랑</span> 을 보았을 때 무슨 색인가요?</p>
+        <checkbox id="question2">
+          <input type='checkbox' name='question2' value='back' onclick='getCheckboxValue()'/>파란색
+          <input type='checkbox' name='question2' value='front' onclick='getCheckboxValue()'/>노란색
+        </checkbox>
+      </div>
+      
+      <div class="question">
+        <p>이중에서 운명적인 이끌림이 느껴지는 것은?</p>
+        <checkbox id="question3">
+          <input type='checkbox' name='question3' value='front' onclick='getCheckboxValue()'/>컬러풀한 화면을 보며 사용자가 보기 좋고 편리하게 정보 배치하기</br>
+          <input type='checkbox' name='question3' value='back' onclick='getCheckboxValue()'/>흑백으로 이루어진 데이터베이스에서 원하는 정보만 쏙 뽑아내어 정리하기
+        </checkbox>
+      </div>
+      
+      <div class="question">
+        <p>둘 중 한가지를 만들 수 있다면?</p>
+        <checkbox id="question4">
+          <input type='checkbox' name='question4' value='front' onclick='getCheckboxValue()'/>아이언맨 수트
+          <input type='checkbox' name='question4' value='back' onclick='getCheckboxValue()'/>자비스 (인공지능)
+        </checkbox>
+      </div>
+      
+      <div class="question">
+        <p>미적 감각이 있다는 이야기를 종종 듣는다.</p>
+        <checkbox id="question5">
+          <input type='checkbox' name='question5' value='front' onclick='getCheckboxValue()'/>Yes
+          <input type='checkbox' name='question5' value='back' onclick='getCheckboxValue()'/>No
+        </checkbox>
+      </div>
+      <!-- 검사완료, 메인화면 버튼 -->
+      <button onclick="submitTest()" id="selectBtn">검사 완료</button>
+      <a href="index2.html" style="text-decoration: none"><button>메인화면</button></a>
+
+
+      <script>
+        //체크박스 중복 선택 금지, 체크된 것 외에 다른 체크박스 선택 시 선택한 체크 박스가 체크되도록 변경
+        function getCheckboxValue() {
+        const questions = document.querySelectorAll('.question');
+
+        questions.forEach((question) => {
+          const checkboxes = question.querySelectorAll('input[type="checkbox"]');
+
+          checkboxes.forEach((checkbox) => {
+            checkbox.addEventListener('change', (event) => {
+              checkboxes.forEach((otherCheckbox) => {
+                if (otherCheckbox !== event.target) {
+                  otherCheckbox.checked = false;
+                }
+              });
+            });
+          });
+        });
+      }
+
+      function submitTest() {
+  // 선택한 선택지 front, back value 값의 개수
+  var front = document.querySelectorAll(
+    'input[type="checkbox"][value="front"]:checked'
+  ).length;
+  var back = document.querySelectorAll(
+    'input[type="checkbox"][value="back"]:checked'
+  ).length;
+
+  let resultMessage = "";
+  let resultImage = "";
+  let message = "";
+  let resultPage = "";
+
+  // 결과 계산
+  if (front >= 3) {
+      resultPage = "frontresult2.html";
+  } else if (back >= 3) {
+    resultPage = "backresult2.html";
+  }
+
+  window.location.href = resultPage;
+}
+</script>
