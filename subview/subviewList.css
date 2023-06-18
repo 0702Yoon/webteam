@@ -116,7 +116,7 @@
     font-size :20px;
     border-collapse: collapse;
     width: 1200px;
-    margin-top:200px;
+   
     border: 1px solid gray;    
     text-align: center;  
 }
@@ -238,4 +238,24 @@
     right: 30px;
     margin-top: 10px;
     }
+
+    #buto{
+        display: inline-block;
+        background-color:  rgba(28, 23, 23, 0.747);
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        font-size: 14px;
+        cursor: pointer;
+        float: right;
+        color: white;
+        margin:10px;
+        transition: background-color 0.5s;
+        
+    }
+    #buto:hover{
+        background-color: darkred;
+    }
+
     
