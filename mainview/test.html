@@ -30,7 +30,6 @@
         padding: 5px;
         font-size: 16px;
       }
-
       button {
         display: block;
         margin: 20px auto;
@@ -42,123 +41,112 @@
         border-radius: 4px;
         cursor: pointer;
       }
-
       button:hover {
         background-color: #45a049;
       }
-
       .result {
         text-align: center;
         font-size: 20px;
         font-weight: bold;
         margin-top: 20px;
       }
-      #title{
+      #title {
         margin: 30px;
         font-size: 40px;
       }
+      #content {
+        margin-bottom: 100px;
+      }
+
     </style>
   </head>
   <body>
     <h1>재미로 보는 개발 성향 검사</h1>
+    <!-- 결과 출력 -->
     <div id="questionContainer"></div>
-    <button onclick="submitTest()" id="selectBtn">검사 완료</button>
-    <a href="index2.html" style="text-decoration: none;"><button>메인화면</button></a>
+    <!-- 질문 및 선택지 -->
+    <div class="question">
+      <p>조별 과제에서 당신의 역할은?</p>
+        <checkbox id="question1">
+          <input type='checkbox' name='question1' value='back' onclick='getCheckboxValue()'/>자료조사 및 정리
+          <input type='checkbox' name='question1' value='front' onclick='getCheckboxValue()'/>정리된 자료로 PPT 만들기
+        </checkbox>
+      </div>
+      
+      <div class="question">
+        <p><span style='color: yellow; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;'>파랑</span> 을 보았을 때 무슨 색인가요?</p>
+        <checkbox id="question2">
+          <input type='checkbox' name='question2' value='back' onclick='getCheckboxValue()'/>파란색
+          <input type='checkbox' name='question2' value='front' onclick='getCheckboxValue()'/>노란색
+        </checkbox>
+      </div>
+      
+      <div class="question">
+        <p>이중에서 운명적인 이끌림이 느껴지는 것은?</p>
+        <checkbox id="question3">
+          <input type='checkbox' name='question3' value='front' onclick='getCheckboxValue()'/>컬러풀한 화면을 보며 사용자가 보기 좋고 편리하게 정보 배치하기</br>
+          <input type='checkbox' name='question3' value='back' onclick='getCheckboxValue()'/>흑백으로 이루어진 데이터베이스에서 원하는 정보만 쏙 뽑아내어 정리하기
+        </checkbox>
+      </div>
+      
+      <div class="question">
+        <p>둘 중 한가지를 만들 수 있다면?</p>
+        <checkbox id="question4">
+          <input type='checkbox' name='question4' value='front' onclick='getCheckboxValue()'/>아이언맨 수트
+          <input type='checkbox' name='question4' value='back' onclick='getCheckboxValue()'/>자비스 (인공지능)
+        </checkbox>
+      </div>
+      
+      <div class="question">
+        <p>미적 감각이 있다는 이야기를 종종 듣는다.</p>
+        <checkbox id="question5">
+          <input type='checkbox' name='question5' value='front' onclick='getCheckboxValue()'/>Yes
+          <input type='checkbox' name='question5' value='back' onclick='getCheckboxValue()'/>No
+        </checkbox>
+      </div>
+      <!-- 검사완료, 메인화면 버튼 -->
+      <button onclick="submitTest()" id="selectBtn">검사 완료</button>
+      <a href="index.html" style="text-decoration: none"><button>메인화면</button></a>
 
-    <script>
-      const questions = [
-        {
-          question: "조별 과제에서 당신의 역할은?",
-          options: ["자료조사 및 정리", "정리된 자료로 PPT 만들기"],
-        },
-        {
-          question:
-            "<span style='color: yellow; text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;'>파랑</span> 을 보았을 때 무슨 색인가요?",
-          options: ["파란색", "노란색"],
-        },
-        {
-          question: "이중에서 운명적인 이끌림이 느껴지는 것은?",
-          options: [
-            "컬러풀한 화면을 보며 사용자가 보기 좋고 편리하게 정보 배치하기",
-            "흑백으로 이루어진 데이터베이스에서 원하는 정보만 쏙 뽑아내어 정리하기",
-          ],
-        },
-        {
-          question: "둘 중 한가지를 만들 수 있다면?",
-          options: ["아이언맨 수트", "자비스 (인공지능)"],
-        },
-        {
-          question: "미적 감각이 있다는 이야기를 종종 듣는다.",
-          options: ["Yes", "No"],
-        },
-      ];
 
-      const questionContainer = document.getElementById("questionContainer");
-      const selectBtn = document.getElementById("selectBtn");
+      <script>
+        //체크박스 중복 선택 금지, 체크된 것 외에 다른 체크박스 선택 시 선택한 체크 박스가 체크되도록 변경
+        function getCheckboxValue() {
+        const questions = document.querySelectorAll('.question');
 
-      // 질문과 선택지를 화면에 표시하는 함수
-      function renderQuestion() {
-        let questionHTML = "";
-        questions.forEach((question, index) => {
-          questionHTML += `
-          <div class="question">
-            <p>${index + 1}. ${question.question}</p>
-            <select id="answer${index}">
-              <option value="0">${question.options[0]}</option>
-              <option value="1">${question.options[1]}</option>
-            </select>
-          </div>`;
+        questions.forEach((question) => {
+          const checkboxes = question.querySelectorAll('input[type="checkbox"]');
+
+          checkboxes.forEach((checkbox) => {
+            checkbox.addEventListener('change', (event) => {
+              checkboxes.forEach((otherCheckbox) => {
+                if (otherCheckbox !== event.target) {
+                  otherCheckbox.checked = false;
+                }
+              });
+            });
+          });
         });
-        questionContainer.innerHTML = questionHTML;
       }
 
-      // 검사 결과 계산 및 표시하는 함수
       function submitTest() {
-        const answers = [];
-        let result = 0;
+  // 선택한 선택지 front, back value 값의 개수
+  var front = document.querySelectorAll(
+    'input[type="checkbox"][value="front"]:checked'
+  ).length;
+  var back = document.querySelectorAll(
+    'input[type="checkbox"][value="back"]:checked'
+  ).length;
 
-        // 선택된 답변을 가져와서 배열에 저장
-        questions.forEach((question, index) => {
-          const answerElement = document.getElementById(`answer${index}`);
-          const answer = parseInt(answerElement.value);
-          answers.push(answer);
-        });
+  let resultPage = "";
 
-        // 답변에 따라 결과 계산
-        answers.forEach((answer) => {
-          result += answer;
-        });
+  // 결과 계산
+  if (front >= 3) {
+      resultPage = "frontresult.html";
+  } else if (back >= 3) {
+    resultPage = "backresult.html";
+  }
 
-        let resultMessage = "";
-        let resultImage = "";
-
-        // 결과에 따라 메시지와 이미지 선택
-        if (result >= 0 && result <= 2) {
-          resultMessage = "당신은 프론트엔드 개발자!";
-          resultImage = "frontend.png";
-          message = `프론트엔드 개발자는 사용자가 직접 접하는 웹 페이지의 시각적인 부분을 담당합니다.<br> 
-          주로 HTML, CSS, JavaScript를 사용하여 웹 페이지의 구조, 디자인, 상호작용을 개발합니다.<br> 
-          프론트엔드 개발자는 사용자 경험을 고려하여 사용자 인터페이스를 개발하고, 웹 페이지의 레이아웃, 색상, 글꼴 등을 디자인합니다.<br>
-          또한, 클라이언트 사이드 스크립팅을 통해 웹 페이지의 동적인 기능을 구현하고,<br> 다양한 브라우저와 기기에 대한 호환성을 고려합니다.<br>프론트엔드 개발자는 디자인, 사용자 경험, 웹 표준, 웹 접근성 등에 대한 이해와 역량이 필요합니다.`
-        } else {
-          resultMessage = "당신은 백엔드 개발자!";
-          resultImage = "backend.png";
-          message="백엔드 개발자는 서버 측에서 웹 애플리케이션의 핵심 로직과 데이터 처리를 담당합니다. 주로<br>서버 사이드 언어(예: Java, Python, PHP 등)와 데이터베이스를 사용하여 서버 애플리케이션을<br>개발하고 관리합니다. 백엔드 개발자는 데이터베이스와의 상호작용을 구현하고, 데이터의 저<br>장, 검색, 조작 등을 처리합니다. 또한, 보안, 성능, 확장성 등을 고려하여 서버 애플리케이션을<br> 설계하고 개발합니다. 백엔드 개발자는 서버 사이드 프로그래밍, 데이터베이스 관리, 네트워킹,<br> 시스템 아키텍처 등에 대한 이해와 역량이 필요합니다."
-        } 
-
-        const resultHTML = `
-        <div class="result">
-          <img src="${resultImage}" width="600">
-          <p id="title">${resultMessage}</p>
-          <p id="content">${message}</P>
-        </div>`;
-
-        questionContainer.innerHTML = resultHTML;
-        selectBtn.style.display = "none";
-      }
-
-      // 초기 질문 화면 렌더링
-      renderQuestion();
-    </script>
-  </body>
-</html>
+  window.location.href = resultPage;
+}
+</script>
