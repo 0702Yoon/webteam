@@ -48,19 +48,19 @@
         padding-top: 20px;
       }
 
-      /* 돌아가기 버튼 스타일 */
-      .back-button {
+      button {
         display: block;
         margin: 20px auto;
         padding: 10px 20px;
-        width: 80px;
         font-size: 18px;
         background-color: #4caf50;
         color: #fff;
         border: none;
         border-radius: 4px;
         cursor: pointer;
-        text-align: center;
+      }
+      button:hover {
+        background-color: #45a049;
       }
     </style>
   </head>
@@ -80,7 +80,9 @@
       </div>
     </div>
 
-    <a href="index2.html" class="back-button">돌아가기</a>
+    <a href="index2.html" style="text-decoration: none"
+      ><button>돌아가기</button></a
+    >
 
     <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <script>
