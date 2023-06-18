@@ -169,6 +169,7 @@ function subshow_two(req, response) {
         const title = fileData.title;
         const content = fileData.content;
         const author = fileData.author;
+        const link = fileData.link;
         var body = '';
 
         var template = templatesubview(fileData);
@@ -374,7 +375,7 @@ function templatesubview(fileData) {
       <tr>
         <th width="180px">카카오톡 링크</th>
         <th width="50px">:</th>
-        <td><a href="#"> https://open.kakao.com/o/gqjrlq8e</a></td>
+        <td><a href= ${fileData.link}>  ${fileData.link}</a></td>
       </tr>
       <tr height="100px"></tr>
       <tr>
@@ -453,7 +454,7 @@ function update(fileData, fieldData) {
                       <td ><input type="text" placeholder="태그를 달아주세요" name="tag" value = "${fileData.tag}"></td>
                   </tr>
                   <tr>
-                      <td><input placeholder="카카오톡 링크를 입력하세요"></td>
+                      <td><input placeholder="카카오톡 링크를 입력하세요" name="link' value=" ${fileData.link}"></td>
                   </tr>
                   <tr>
                       <td><input type="file"></td>
