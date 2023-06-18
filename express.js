@@ -287,8 +287,8 @@ function redirectToAbsoluteURL() {
         <div class="header">
 
                 <ul class="nav">
-                <li><a href="/subview/back_end">BACK END</a></li>
-                <li><a href="/subview/front_end">FRONT END</a></li>
+                <li><a href="/subview/BACKEND">BACK END</a></li>
+                <li><a href="/subview/FRONTEND">FRONT END</a></li>
                 <li><a href="/subview/comunity">COMMUNITY</a></li>
                 </ul>
                 </div>
@@ -413,8 +413,8 @@ function update(fileData, fieldData) {
           <a id="Logo" href="#" onclick="redirectToAbsoluteURL()">THE<br> PUZZLE</a>
               <div class="header">
                   <ul class="nav">
-                      <li><a href="/subview/back_end">BACK END</a></li>
-                      <li><a href="/subview/front_end">FRONT END</a></li>
+                      <li><a href="/subview/BACKEND">BACK END</a></li>
+                      <li><a href="/subview/FRONTEND">FRONT END</a></li>
                       <li><a href="/subview/comunity">COMMUNITY</a></li>
                   </ul>
                   </div>
@@ -433,8 +433,8 @@ function update(fileData, fieldData) {
                       <td>
                       <select class="select" name="field" id="fieldSelect">
                            <option value="">--모집글의 종류를 선택해주세요--</option>
-                          <option value="back_end">BACK END</option>
-                          <option value="front_end">FRONT END</option>
+                          <option value="BACKEND">BACK END</option>
+                          <option value="FRONTEND">FRONT END</option>
                           <option value="comunity">COMMUNITY</option>
                       </select>
                    </td>
@@ -475,10 +475,10 @@ var fieldData = "${fieldData}"; // fieldData 변수의 값을 JavaScript로 가�
 var selectElement = document.getElementById("fieldSelect");
 
 // fieldData 값에 해당하는 옵션을 선택합니다.
-if (fieldData == "back_end") {
-  selectElement.value = "back_end";
-} else if (fieldData == "front_end") {
-  selectElement.value = "front_end";
+if (fieldData == "BACKEND") {
+  selectElement.value = "BACKEND";
+} else if (fieldData == "FRONTEND") {
+  selectElement.value = "FRONTEND";
 }
 </script>
   </body>
